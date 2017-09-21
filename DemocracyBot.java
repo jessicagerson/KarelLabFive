@@ -13,11 +13,14 @@ public class DemocracyBot extends Robot
     }
     
     public void fixBallots() {
-        if( beeperInStreet()) {
-            //makeSureBeepersPresent();
-        }
-        else {
-            //makeSureNoBeepers();
+        move();
+            for (int x = 0; x<5; x++){
+            if( beeperInStreet()) {
+                makeSureBeepersPresent();
+            }
+            else {
+                makeSureNoBeepers();
+            }
         }
     }
     public void turnRight(){
@@ -26,15 +29,84 @@ public class DemocracyBot extends Robot
         turnLeft();
     }
     public boolean beeperInStreet(){
-        move();
+        
         if (nextToABeeper()){
             return true;
         }
         else{
             return false;
         }
-        
     }
-
+        public void makeSureNoBeepers(){
+        turnLeft();
+        move();
+        if (nextToABeeper()){
+            while (nextToABeeper()){
+                pickBeeper();
+            }
+            turnLeft();
+            turnLeft();
+            move();
+            move();
+        }
+        else{
+            turnLeft();
+            turnLeft();
+            move();
+            move();
+        }
+        if (nextToABeeper()){
+            while (nextToABeeper()){
+                pickBeeper();
+            }
+            turnLeft();
+            turnLeft();
+            move();
+            turnRight();
+            move();
+            move();
+        }
+        else{
+            turnLeft();
+            turnLeft();
+            move();
+            turnRight();
+            move();
+            move();
+        }
+    }
+        public void makeSureBeepersPresent(){
+        turnLeft();
+        move();
+        if (nextToABeeper()){
+            while(nextToABeeper()){
+                pickBeeper();
+            }
+            putBeeper();
+        }
+        else {
+            putBeeper();
+        }
+        turnLeft();
+        turnLeft();
+        move();
+        move();
+        if (nextToABeeper()){
+            while(nextToABeeper()){
+                pickBeeper();
+            }
+            putBeeper();
+        }
+        else {
+            putBeeper();
+        }
+        turnLeft();
+        turnLeft();
+        move();
+        turnRight();
+        move();
+        move();
+    
+    }
 }
 
